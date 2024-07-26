@@ -34,7 +34,7 @@ signUpButtonElement.onclick = ()=>{
     console.log("CREATE ACCOUNT!!")
     try {
         throw new Error("Soda")
-        // This search line will be commented while the application is under development
+        // This fetch line will be commented while the application is under development
         // fetch("http://localhost:8000/accounts/create", {
         //     method: "POST",
         //     body: JSON.stringify({
