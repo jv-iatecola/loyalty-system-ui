@@ -3,7 +3,6 @@ if (!localStorageContent){
     location.assign("/create-account.html")
 }
 
-
 const logoutButtonElement = document.createElement("button")
 logoutButtonElement.textContent = "Logout"
 

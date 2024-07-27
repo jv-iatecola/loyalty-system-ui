@@ -2,6 +2,9 @@ const localStorageContent = localStorage.getItem("Token")
 if (localStorageContent) {
     location.assign("/home.html")
 }
+const anchorLoginElement = document.createElement("a")
+anchorLoginElement.textContent = "SignIn"
+anchorLoginElement.href = "http://localhost:5173/login.html"
 
 const formElement = document.createElement("form")
 
@@ -10,16 +13,16 @@ const titleElement = document.createElement("h3")
 const emailInputElement = document.createElement("input")
 emailInputElement.id = "Email"
 emailInputElement.type = "email"
-// emailInputElement.required = "true"
+emailInputElement.required = "true"
 
 const usernameInputElement = document.createElement("input")
 usernameInputElement.id = "Username"
-// emailInputElement.required = "true"
+emailInputElement.required = "true"
 
 const passwordInputElement = document.createElement("input")
 passwordInputElement.id = "Password"
 passwordInputElement.type = "password"
-// passwordInputElement.required = "true"
+passwordInputElement.required = "true"
 
 const signUpButtonElement = document.createElement("input")
 signUpButtonElement.type = "submit"
@@ -39,27 +42,26 @@ passwordLabelElement.textContent = "Password"
 titleElement.textContent = "Create Account"
 signUpButtonElement.textContent = "SignUp"
 
-formElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement)
+formElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement, anchorLoginElement)
 
 document.body.prepend(formElement)
 
 signUpButtonElement.onclick = async (event) => {
     event.preventDefault()
     try {
-        // This fetch line will be commented while the application is under development.
         const fetchResponse = await fetch("http://localhost:8000/accounts/create", {
             method: "POST",
             body: JSON.stringify({
-                "email": (emailInputElement.value),
-                "username": (usernameInputElement.value),
-                "password": (passwordInputElement.value)
+                "email": emailInputElement.value,
+                "username": usernameInputElement.value,
+                "password": passwordInputElement.value
             })
         })
         const response = await fetchResponse.json()
         console.log(fetchResponse)
 
-        if (fetchResponse.status === 400){
-            throw new Error("Test Error")
+        if (fetchResponse.status !== 201){
+            throw new Error("Error: Invalid Credentials")
         }
 
         localStorage.setItem("Token", response.message)
