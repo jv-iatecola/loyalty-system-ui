@@ -1,17 +1,28 @@
+const localStorageContent = localStorage.getItem("Token")
+if (localStorageContent) {
+    location.assign("/home.html")
+}
+
+const formElement = document.createElement("form")
+
 const titleElement = document.createElement("h3")
 
 const emailInputElement = document.createElement("input")
 emailInputElement.id = "Email"
 emailInputElement.type = "email"
+// emailInputElement.required = "true"
 
 const usernameInputElement = document.createElement("input")
 usernameInputElement.id = "Username"
+// emailInputElement.required = "true"
 
 const passwordInputElement = document.createElement("input")
 passwordInputElement.id = "Password"
 passwordInputElement.type = "password"
+// passwordInputElement.required = "true"
 
-const signUpButtonElement = document.createElement("button")
+const signUpButtonElement = document.createElement("input")
+signUpButtonElement.type = "submit"
 
 const emailLabelElement = document.createElement("label")
 emailLabelElement.htmlFor = "Email"
@@ -28,22 +39,33 @@ passwordLabelElement.textContent = "Password"
 titleElement.textContent = "Create Account"
 signUpButtonElement.textContent = "SignUp"
 
-document.body.prepend(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement)
+formElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement)
 
-signUpButtonElement.onclick = ()=>{
-    console.log("CREATE ACCOUNT!!")
+document.body.prepend(formElement)
+
+signUpButtonElement.onclick = async (event) => {
+    event.preventDefault()
     try {
-        throw new Error("Soda")
-        // This fetch line will be commented while the application is under development
-        // fetch("http://localhost:8000/accounts/create", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         "email": (emailInputElement.value),
-        //         "username": (usernameInputElement.value),
-        //         "password": (passwordInputElement.value)
-        //     })
-        // })
+        // This fetch line will be commented while the application is under development.
+        const fetchResponse = await fetch("http://localhost:8000/accounts/create", {
+            method: "POST",
+            body: JSON.stringify({
+                "email": (emailInputElement.value),
+                "username": (usernameInputElement.value),
+                "password": (passwordInputElement.value)
+            })
+        })
+        const response = await fetchResponse.json()
+        console.log(fetchResponse)
+
+        if (fetchResponse.status === 400){
+            throw new Error("Test Error")
+        }
+
+        localStorage.setItem("Token", response.message)
+        location.assign("/home.html")
     } catch (error) {
+        const pErrorElement = document.createElement("p")
         pErrorElement.textContent = "Error: Invalid credentials."
         document.body.prepend(pErrorElement)
     }
