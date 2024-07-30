@@ -48,7 +48,7 @@ signInButtonElement.onclick = async (event)=>{
         }
 
         localStorage.setItem("Token", response.message)
-        location.assign("/home.html")
+        location.assign("/user-voucher-list.html")
     } catch (error) {
         const pErrorElement = document.createElement("p")
         pErrorElement.textContent = "Error: Invalid credentials."

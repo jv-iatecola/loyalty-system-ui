@@ -1,6 +1,6 @@
 const localStorageContent = localStorage.getItem("Token")
 if (localStorageContent) {
-    location.assign("/home.html")
+    location.assign("/user-voucher-list.html")
 }
 const anchorLoginElement = document.createElement("a")
 anchorLoginElement.textContent = "SignIn"
@@ -42,9 +42,9 @@ passwordLabelElement.textContent = "Password"
 titleElement.textContent = "Create Account"
 signUpButtonElement.textContent = "SignUp"
 
-formElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement, anchorLoginElement)
+groupElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement, anchorLoginElement)
 
-document.body.prepend(formElement)
+document.body.prepend(groupElement)
 
 signUpButtonElement.onclick = async (event) => {
     event.preventDefault()
@@ -65,7 +65,7 @@ signUpButtonElement.onclick = async (event) => {
         }
 
         localStorage.setItem("Token", response.message)
-        location.assign("/home.html")
+        location.assign("/user-voucher-list.html")
     } catch (error) {
         const pErrorElement = document.createElement("p")
         pErrorElement.textContent = "Error: Invalid credentials."
