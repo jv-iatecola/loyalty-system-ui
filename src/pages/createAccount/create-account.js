@@ -42,6 +42,7 @@ passwordLabelElement.textContent = "Password"
 titleElement.textContent = "Create Account"
 signUpButtonElement.textContent = "SignUp"
 
+const groupElement = document.createElement("div")
 groupElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement, anchorLoginElement)
 
 document.body.prepend(groupElement)

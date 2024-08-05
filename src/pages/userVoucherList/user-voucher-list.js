@@ -36,11 +36,13 @@ async function getVouchers(){
             pVoucherIdElement.textContent = element.id
             const pVoucherCreatedAtElement = document.createElement("p")
             pVoucherCreatedAtElement.textContent = element.created_at
+            const pVoucherStoreNameElement = document.createElement("p")
+            pVoucherStoreNameElement.textContent = element.store_name
             const pVoucherStoreIdElement = document.createElement("p")
             pVoucherStoreIdElement.textContent = element.stores_id
 
             const voucherButtonElement = document.createElement("button")
-            voucherButtonElement.append(pVoucherIdElement, pVoucherCreatedAtElement, pVoucherStoreIdElement)
+            voucherButtonElement.append(pVoucherIdElement, pVoucherCreatedAtElement, pVoucherStoreNameElement, pVoucherStoreIdElement)
             
             groupElement.append(voucherButtonElement)
             });
