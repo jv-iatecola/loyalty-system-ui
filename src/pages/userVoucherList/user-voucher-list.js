@@ -5,17 +5,22 @@ if (!localStorageContent){
 
 const profileButtonElement = document.createElement("button")
 profileButtonElement.textContent = "Profile"
-const StoresListButtonElement = document.createElement("button")
-StoresListButtonElement.textContent = "Stores List"
+const storesListButtonElement = document.createElement("button")
+storesListButtonElement.textContent = "Stores List"
 const logoutButtonElement = document.createElement("button")
 logoutButtonElement.textContent = "Logout"
 
 
-document.body.prepend(profileButtonElement, StoresListButtonElement, logoutButtonElement)
+document.body.prepend(profileButtonElement, storesListButtonElement, logoutButtonElement)
 
 logoutButtonElement.onclick = ()=>{
     localStorage.clear()
     location.assign("/create-account.html")
+}
+
+storesListButtonElement.onclick = ()=>{
+    localStorage.clear()
+    location.assign("/user-store_list.html")
 }
 
 const groupElement = document.createElement("div")
