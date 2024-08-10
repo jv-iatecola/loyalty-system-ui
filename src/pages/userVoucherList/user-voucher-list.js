@@ -19,8 +19,7 @@ logoutButtonElement.onclick = ()=>{
 }
 
 storesListButtonElement.onclick = ()=>{
-    localStorage.clear()
-    location.assign("/user-store_list.html")
+    location.assign("/user-store-list.html")
 }
 
 const groupElement = document.createElement("div")
@@ -50,7 +49,7 @@ async function getVouchers(){
             voucherButtonElement.append(pVoucherIdElement, pVoucherCreatedAtElement, pVoucherStoreNameElement, pVoucherStoreIdElement)
             
             groupElement.append(voucherButtonElement)
-            });
+        });
 
     }catch (error) {
         const pErrorElement = document.createElement("p")
@@ -62,4 +61,3 @@ async function getVouchers(){
 document.body.prepend(groupElement)
 
 getVouchers()
-

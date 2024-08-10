@@ -6,7 +6,7 @@ const anchorLoginElement = document.createElement("a")
 anchorLoginElement.textContent = "SignIn"
 anchorLoginElement.href = "http://localhost:5173/login.html"
 
-const formElement = document.createElement("form")
+// const formElement = document.createElement("form")
 
 const titleElement = document.createElement("h3")
 
