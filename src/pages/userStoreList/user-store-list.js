@@ -33,6 +33,7 @@ async function getStores(){
 
             const storeButtonElement = document.createElement("button")
             storeButtonElement.append(pStoreIdElement, pStoreNameElement, pStoreCreatedAtElement, pStoreAccountsIdElement)
+            storeButtonElement.onclick = () => getVouchersByStore(element.id)
 
             groupElement.append(storeButtonElement)
         })
@@ -45,6 +46,10 @@ async function getStores(){
     }
 }
 
-document.body.prepend(groupElement, createStoreButtonElement)
+function getVouchersByStore(storeId){
+    location.assign(`http://localhost:5173/store-voucher-list.html?store_id=${storeId}`)
+}
 
 getStores()
+
+document.body.prepend(groupElement, createStoreButtonElement)

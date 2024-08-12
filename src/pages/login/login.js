@@ -23,7 +23,7 @@ passwordLabelElement.textContent = "Password"
 
 const signInButtonElement = document.createElement("input")
 signInButtonElement.type = "submit"
-signInButtonElement.textContent = "SignIn"
+signInButtonElement.value = "SignIn"
 
 formElement.append(titleElement, emailInputElement, emailLabelElement, passwordInputElement, passwordLabelElement, signInButtonElement)
 

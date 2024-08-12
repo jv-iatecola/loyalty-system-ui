@@ -6,9 +6,8 @@ const anchorLoginElement = document.createElement("a")
 anchorLoginElement.textContent = "SignIn"
 anchorLoginElement.href = "http://localhost:5173/login.html"
 
-// const formElement = document.createElement("form")
-
 const titleElement = document.createElement("h3")
+titleElement.textContent = "Create Account"
 
 const emailInputElement = document.createElement("input")
 emailInputElement.id = "Email"
@@ -25,6 +24,7 @@ passwordInputElement.type = "password"
 passwordInputElement.required = "true"
 
 const signUpButtonElement = document.createElement("input")
+signUpButtonElement.value = "SignUp"
 signUpButtonElement.type = "submit"
 
 const emailLabelElement = document.createElement("label")
@@ -38,9 +38,6 @@ usernameLabelElement.textContent = "Username"
 const passwordLabelElement = document.createElement("label")
 passwordLabelElement.htmlFor = "Password"
 passwordLabelElement.textContent = "Password"
-
-titleElement.textContent = "Create Account"
-signUpButtonElement.textContent = "SignUp"
 
 const groupElement = document.createElement("div")
 groupElement.append(titleElement, emailInputElement, usernameInputElement, passwordInputElement, emailLabelElement, usernameLabelElement, passwordLabelElement, signUpButtonElement, anchorLoginElement)
@@ -59,7 +56,6 @@ signUpButtonElement.onclick = async (event) => {
             })
         })
         const response = await fetchResponse.json()
-        console.log(fetchResponse)
 
         if (fetchResponse.status !== 201){
             throw new Error("Error: Invalid Credentials")
