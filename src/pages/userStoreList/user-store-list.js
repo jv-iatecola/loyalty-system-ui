@@ -11,6 +11,10 @@ createStoreButtonElement.onclick = () => {
     location.assign("/create-store.html")
 }
 
+function getVouchersByStore(storeId){
+    location.assign(`http://localhost:5173/store-voucher-list.html?store_id=${storeId}`)
+}
+
 async function getStores(){
     try {
         const fetchResponse = await fetch("http://localhost:8000/stores", {
@@ -44,10 +48,6 @@ async function getStores(){
         createStoreButtonElement.textContent = "Create Store"
         groupElement.append(pErrorElement)        
     }
-}
-
-function getVouchersByStore(storeId){
-    location.assign(`http://localhost:5173/store-voucher-list.html?store_id=${storeId}`)
 }
 
 getStores()
