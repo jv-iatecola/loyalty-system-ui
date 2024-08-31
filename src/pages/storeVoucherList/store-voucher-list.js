@@ -2,23 +2,58 @@ const localStorageContent = localStorage.getItem("Token")
 if (!localStorageContent){
     location.assign("/create-account.html")
 }
+
+async function validateAccountVerifier(){
+    try {
+        const fetchResponse = await fetch("http://localhost:8000/accounts/verify", {
+            method: "GET",
+            headers: {
+                "Authorization": localStorageContent
+            }
+        })
+        if (fetchResponse.status !== 200){
+            location.assign("/resend-validation-email.html")
+        }
+
+    } catch (error) {
+        const pErrorElement = document.createElement("p")
+        pErrorElement.textContent = "Account Validation Error"
+        groupElement.append(pErrorElement)
+    }
+}
+
+validateAccountVerifier()
+
 let placeHolder = null
 
-const params = new URLSearchParams(document.location.search)
-const storeId = params.get("store_id")
+const urlParams = new URLSearchParams(document.location.search)
+const storeId = urlParams.get("store_id")
+
+const storeNameTitleElement = document.createElement("h3")
+storeNameTitleElement.id = "storeNameElement"
+storeNameTitleElement.textContent = urlParams.get("store_name")
+
+const returnButtonElement = document.createElement("button")
+returnButtonElement.textContent = "<"
+returnButtonElement.id = "returnButton"
+returnButtonElement.onclick = () => {
+    location.assign("/user-store-list.html")
+}
 
 const deleteAllVouchersButtonElement = document.createElement("button")
+deleteAllVouchersButtonElement.id = "deleteAllVouchersButtonElement"
 deleteAllVouchersButtonElement.textContent = "Delete All"
 deleteAllVouchersButtonElement.onclick = () => deleteAllVouchers()
 
 const groupElement = document.createElement("div")
+groupElement.append(returnButtonElement, storeNameTitleElement)
 
 function displayDeleteButton(selectedVoucherId){
     const deleteButton = document.createElement("button")
     deleteButton.textContent = "Delete?"
 
     if (!placeHolder){
-        groupElement.append(deleteButton)
+        groupElement.pend(deleteButton)
         placeHolder = deleteButton
         deleteButton.onclick = () => deleteSelectedVoucher(selectedVoucherId)
 
@@ -44,7 +79,6 @@ async function deleteAllVouchers(){
         groupElement.append(pErrorElement)  
     }
 }
-
 
 async function deleteSelectedVoucher(selectedVoucherId){
     try {

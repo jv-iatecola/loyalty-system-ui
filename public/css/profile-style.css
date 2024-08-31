@@ -1,0 +1,49 @@
+body{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 16px;
+}
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#returnButton{
+    align-self: flex-start;
+}
+#pUsernameElement{
+    font-size: 65px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+#settingsButtonElement{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 290px;
+    font-size: 25px;
+    font-weight: 900;
+    align-self: center;
+    margin: 0 auto;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-self: center;
+    gap: 16px;
+}
+#personalDetailsElement{
+    width: 290px;
+}
+#confirmButtonElement{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 290px;
+    font-size: 25px;
+    font-weight: 900;
+    align-self: center;
+    margin: 0 auto;
+}

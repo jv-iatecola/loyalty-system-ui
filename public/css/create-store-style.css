@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 16px;
+}
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+#returnButton{
+    align-self: flex-start;
+}
+label{
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    align-self: center;
+}
+#createStore{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 185px;
+    font-size: 20px;
+    font-weight: 900;
+    align-self: center;
+}

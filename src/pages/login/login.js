@@ -1,4 +1,7 @@
-const formElement = document.createElement("form")
+const localStorageContent = localStorage.getItem("Token")
+if (localStorageContent) {
+    location.assign("/user-voucher-list.html")
+}
 
 const titleElement = document.createElement("h3")
 titleElement.textContent = "SignIn"
@@ -24,8 +27,14 @@ passwordLabelElement.textContent = "Password"
 const signInButtonElement = document.createElement("input")
 signInButtonElement.type = "submit"
 signInButtonElement.value = "SignIn"
+signInButtonElement.id = "SignInButton"
 
-formElement.append(titleElement, emailInputElement, emailLabelElement, passwordInputElement, passwordLabelElement, signInButtonElement)
+const anchorSignUpElement = document.createElement("a")
+anchorSignUpElement.textContent = "SignUp"
+anchorSignUpElement.href = "http://localhost:5173/create-account.html"
+
+const formElement = document.createElement("form")
+formElement.append(titleElement, emailLabelElement, emailInputElement, passwordLabelElement, passwordInputElement, signInButtonElement, anchorSignUpElement)
 
 document.body.prepend(formElement)
 
@@ -41,17 +50,15 @@ signInButtonElement.onclick = async (event)=>{
         })
 
         const response = await fetchResponse.json()
-        console.log(fetchResponse)
-
         if (fetchResponse.status !== 200){
-            throw new Error("Error: Invalid Credentials")
+            throw new Error("Oops, something went wrong. Please try again.")
         }
 
         localStorage.setItem("Token", response.message)
         location.assign("/user-voucher-list.html")
     } catch (error) {
         const pErrorElement = document.createElement("p")
-        pErrorElement.textContent = "Error: Invalid credentials."
+        pErrorElement.textContent = "Oops, something went wrong. Please try again."
         document.body.prepend(pErrorElement)
     }
 }
