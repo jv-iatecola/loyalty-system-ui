@@ -7,7 +7,7 @@ const groupElement = document.createElement("div")
 
 async function validateAccountVerifier(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/verify", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/verify", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent
@@ -27,7 +27,7 @@ validateAccountVerifier()
 
 async function resendValidationEmail(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/resend_email", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/resend_email", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent

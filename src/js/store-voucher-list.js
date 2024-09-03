@@ -5,7 +5,7 @@ if (!localStorageContent){
 
 async function validateAccountVerifier(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/verify", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/verify", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent
@@ -65,7 +65,7 @@ function displayDeleteButton(selectedVoucherId){
 
 async function deleteAllVouchers(){
     try {
-        const fetchResponse = await fetch(`http://localhost:8000/vouchers?store_id=${storeId}`, {
+        const fetchResponse = await fetch(`https://loyalty-system.onrender.com/vouchers?store_id=${storeId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": localStorageContent
@@ -82,7 +82,7 @@ async function deleteAllVouchers(){
 
 async function deleteSelectedVoucher(selectedVoucherId){
     try {
-        const fetchResponse = await fetch(`http://localhost:8000/vouchers?id=${selectedVoucherId}`, {
+        const fetchResponse = await fetch(`https://loyalty-system.onrender.com/vouchers?id=${selectedVoucherId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": localStorageContent
@@ -99,7 +99,7 @@ async function deleteSelectedVoucher(selectedVoucherId){
 
 async function getVouchersByStore(){
     try {
-        const fetchResponse = await fetch(`http://localhost:8000/vouchers?stores_id=${storeId}`, {
+        const fetchResponse = await fetch(`https://loyalty-system.onrender.com/vouchers?stores_id=${storeId}`, {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent

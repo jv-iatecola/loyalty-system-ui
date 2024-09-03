@@ -5,7 +5,7 @@ if (!localStorageContent){
 
 async function validateAccountVerifier(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/verify", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/verify", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent
@@ -45,12 +45,12 @@ createStoreButtonElement.onclick = () => {
 }
 
 function getVouchersByStore(storeId, storeName){
-    location.assign(`http://localhost:5173/store-voucher-list.html?store_id=${storeId}&store_name=${storeName}`)
+    location.assign(`/store-voucher-list.html?store_id=${storeId}&store_name=${storeName}`)
 }
 
 async function getStores(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/stores", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/stores", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent

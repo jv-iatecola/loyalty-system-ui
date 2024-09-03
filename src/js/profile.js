@@ -22,7 +22,7 @@ settingsButtonElement.onclick = displaySettingsOptions
 
 async function getUser(){
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/get_user", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/get_user", {
             method: "GET",
             headers: {
                 "Authorization": localStorageContent
@@ -119,7 +119,7 @@ async function modifyUserInfo(newEmailInputElement, newUsernameInputElement, new
     }
     
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/put", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/put", {
             method: "PUT",
             headers: {
                 "Authorization": localStorageContent

@@ -31,7 +31,7 @@ document.body.prepend(groupElement)
 createStoreButtonElement.onclick = async (event) => {
     event.preventDefault()
     try {
-        const fetchResponse = await fetch("http://localhost:8000/stores", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/stores", {
             method: "POST",
             headers: {
                 "Authorization": localStorageContent

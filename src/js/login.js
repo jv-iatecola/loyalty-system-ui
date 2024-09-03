@@ -4,7 +4,7 @@ if (localStorageContent) {
 }
 
 const titleElement = document.createElement("h3")
-titleElement.textContent = "Create Account"
+titleElement.textContent = "SignIn"
 
 const emailInputElement = document.createElement("input")
 emailInputElement.id = "Email"
@@ -15,14 +15,6 @@ const emailLabelElement = document.createElement("label")
 emailLabelElement.htmlFor = "Email"
 emailLabelElement.textContent = "Email"
 
-const usernameInputElement = document.createElement("input")
-usernameInputElement.id = "Username"
-emailInputElement.required = "true"
-
-const usernameLabelElement = document.createElement("label")
-usernameLabelElement.htmlFor = "Username"
-usernameLabelElement.textContent = "Username"
-
 const passwordInputElement = document.createElement("input")
 passwordInputElement.id = "Password"
 passwordInputElement.type = "password"
@@ -32,34 +24,33 @@ const passwordLabelElement = document.createElement("label")
 passwordLabelElement.htmlFor = "Password"
 passwordLabelElement.textContent = "Password"
 
-const signUpButtonElement = document.createElement("input")
-signUpButtonElement.id = "SignUpButton"
-signUpButtonElement.value = "SignUp"
-signUpButtonElement.type = "submit"
+const signInButtonElement = document.createElement("input")
+signInButtonElement.type = "submit"
+signInButtonElement.value = "SignIn"
+signInButtonElement.id = "SignInButton"
 
-const anchorLoginElement = document.createElement("a")
-anchorLoginElement.textContent = "SignIn"
-anchorLoginElement.href = "http://localhost:5173/login.html"
+const anchorSignUpElement = document.createElement("a")
+anchorSignUpElement.textContent = "SignUp"
+anchorSignUpElement.href = "/create-account.html"
 
-const groupElement = document.createElement("div")
-groupElement.append(titleElement, emailLabelElement, emailInputElement, usernameLabelElement, usernameInputElement, passwordLabelElement, passwordInputElement, signUpButtonElement, anchorLoginElement)
+const formElement = document.createElement("form")
+formElement.append(titleElement, emailLabelElement, emailInputElement, passwordLabelElement, passwordInputElement, signInButtonElement, anchorSignUpElement)
 
-document.body.prepend(groupElement)
+document.body.prepend(formElement)
 
-signUpButtonElement.onclick = async (event) => {
+signInButtonElement.onclick = async (event)=>{
     event.preventDefault()
     try {
-        const fetchResponse = await fetch("http://localhost:8000/accounts/create", {
+        const fetchResponse = await fetch("https://loyalty-system.onrender.com/accounts/login", {
             method: "POST",
             body: JSON.stringify({
                 "email": emailInputElement.value,
-                "username": usernameInputElement.value,
                 "password": passwordInputElement.value
             })
         })
-        const response = await fetchResponse.json()
 
-        if (fetchResponse.status !== 201){
+        const response = await fetchResponse.json()
+        if (fetchResponse.status !== 200){
             throw new Error("Oops, something went wrong. Please try again.")
         }
 
